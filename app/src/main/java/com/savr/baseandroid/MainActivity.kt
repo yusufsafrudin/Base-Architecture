@@ -3,6 +3,7 @@ package com.savr.baseandroid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -84,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         edit_search.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (s.toString().isNotEmpty()) {
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         mainViewModel.searchMovie("$s")
                     }, 1500)
                 } else {
